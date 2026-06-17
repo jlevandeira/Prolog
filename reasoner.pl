@@ -6,7 +6,9 @@
     media_nacional_populacao/1,   
     concelho_acima_da_media/1,    
     concelho_mais_populoso/2,     
-    concelho_mais_edificios/2     
+    concelho_mais_edificios/2,
+    concelho_menos_populoso/2,
+    concelho_menos_edificios/2     
 ]).
 
 :- use_module(db).
@@ -112,3 +114,15 @@ concelho_mais_edificios(Concelho, MaxEdificios) :-
     findall(Edif-Nome, db:concelho_info(Nome, _, _, Edif), L),
     keysort(L, Sorted),
     last(Sorted, MaxEdificios-Concelho).
+
+% Enconctra o concelho com menor população
+concelho_menos_populoso(Concelho, MinPop) :-
+    findall(Pop-Nome, db: concelho_info(Nome, _, Pop, _), L),
+    keysort(L, Sorted),
+    Sorted = [MinPop-Concelho|_].
+
+% Encontra o concelho com menor numero de edificios
+concelho_menos_edificios(Concelho, MinEdificios) :-
+    findall(Edif-Nome, db: concelho_info(Nome, _, _, Edif), L),
+    keysort(L, Sorted),
+    Sorted = [MinEdificios - Concelho|_].

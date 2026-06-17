@@ -45,9 +45,9 @@ execute_query(populacao(Concelho)) :-
 execute_query(mais_populoso) :-
     (   reasoner:concelho_mais_populoso(Concelho, Pop)
     ->  db:concelho_info(Concelho, Cod, _, Edificios),
-        print_table_header(['Concelho Mais Populoso', 'Codigo DICO', 'Populacao', 'Edificios']),
+        print_table_header(['Concelho', 'Codigo DICO', 'Populacao', 'Edificios']),
         print_table_row([Concelho, Cod, Pop, Edificios]),
-        print_table_footer(['Concelho Mais Populoso', 'Codigo DICO', 'Populacao', 'Edificios'])
+        print_table_footer(['Concelho', 'Codigo DICO', 'Populacao', 'Edificios'])
     ;   write('Erro ao obter dados.'), nl
     ).
 
@@ -55,10 +55,30 @@ execute_query(mais_populoso) :-
 execute_query(mais_edificios) :-
     (   reasoner:concelho_mais_edificios(Concelho, Edificios)
     ->  db:concelho_info(Concelho, Cod, Pop, _),
-        print_table_header(['Concelho com Mais Edificios', 'Codigo DICO', 'Populacao', 'Edificios']),
+        print_table_header(['Concelho', 'Codigo DICO', 'Populacao', 'Edificios']),
         print_table_row([Concelho, Cod, Pop, Edificios]),
-        print_table_footer(['Concelho com Mais Edificios', 'Codigo DICO', 'Populacao', 'Edificios'])
+        print_table_footer(['Concelho', 'Codigo DICO', 'Populacao', 'Edificios'])
     ;   write('Erro ao obter dados.'), nl
+    ).
+
+% Consulta comparativa que identifica e mostra o concelho com menor populacao
+execute_query(menos_populoso) :-
+    ( reasoner:concelho_menos_populoso(Concelho, Pop)
+    -> db:concelho_info(Concelho, Cod, _, Edificios),
+       print_table_header(['Concelho', 'Codigo DICO', 'Populacao', 'Edificios']),
+       print_table_row([Concelho, Cod, Pop, Edificios]),
+       print_table_footer(['Concelho', 'Codigo DICO', 'Populacao', 'Edificios'])
+    ; write('Erro ao obter dados.'), nl
+    ).
+
+% Consulta comparativa que identifica e mostra o concelho com menor número de edificios
+execute_query(menos_edificios) :-
+    ( reasoner:concelho_menos_edificios(Concelho, Edificios)
+    -> db:concelho_info(Concelho, Cod, Pop, _),
+       print_table_header(['Concelho', 'Codigo DICO', 'Populacao', 'Edificios']),
+       print_table_row([Concelho, Cod, Pop, Edificios]),
+       print_table_footer(['Concelho', 'Codigo DICO', 'Populacao', 'Edificios'])
+    ; write('Erro ao obter dados.'), nl
     ).
 
 % Procura e lista todos os concelhos vizinhos de um certo concelho

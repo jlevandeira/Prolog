@@ -57,8 +57,15 @@ sentence(mais_populoso) --> [qual, o, concelho, mais, populoso].
 sentence(mais_populoso) --> [qual, o, concelho, com, maior, populacao].
 sentence(mais_populoso) --> [concelho, mais, populoso].
 
+sentence(menos_populoso) --> [qual, o, concelho, menos, populoso].
+sentence(menos_populoso) --> [qual, o, concelho, com, menor, populacao].
+sentence(menos_populoso) --> [concelho, menos, populoso].
+
 sentence(mais_edificios) --> [qual, o, concelho, com, mais, edificios].
 sentence(mais_edificios) --> [concelho, com, mais, edificios].
+
+sentence(menos_edificios) --> [qual, o, concelho, com, menos, edificios].
+sentence(menos_edificios) --> [concelho, com, menos, edificios].
 
 % Auxiliar da gramática
 preposicao --> [no] ; [na] ; [em] ; [de] ; [do] ; [da] ; [a] ; [para].
