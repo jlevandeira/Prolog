@@ -17,3 +17,10 @@ Devido ao limite de tamanho de ficheiros do GitHub, a base de dados do projeto (
 3. Extrai o ficheiro descarregado e localiza o ficheiro base de dados com o nome:  
    `portugal2001.gpkg`
 4. Coloca o ficheiro **`portugal2001.gpkg` na pasta raiz deste projeto** (junto aos ficheiros `.pl` como o `app.pl`, `db.pl`, etc.).
+
+---
+
+### Executar
+Para iniciar a interface de linguagem natural no terminal, corre o seguinte comando na pasta do projeto:
+```bash
+swipl -s app.pl -g "start."
